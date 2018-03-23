@@ -36,10 +36,10 @@ class ProjectPaths {
     }
 
     /**
-     * Return path
+     * Return absolute path
      * @param p Alias for path
      */
-    get (p) {
+    getA (p) {
         // if (this.paths[p]) {
         //     return this.paths[p];
         // }
@@ -65,7 +65,7 @@ class ProjectPaths {
      * Return path relatively of root
      * @param p
      */
-    getRelative(p) {
+    getR(p) {
         return `./${path.relative(this.root(), this.get(...arguments))}`;
     }
 
