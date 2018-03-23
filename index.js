@@ -66,7 +66,7 @@ class ProjectPaths {
      * @param p
      */
     getRelative(p) {
-        return `./${path.relative(this.root(), this.get(p))}`;
+        return `./${path.relative(this.root(), this.get(...arguments))}`;
     }
 
     /**
