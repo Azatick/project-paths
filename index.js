@@ -62,6 +62,14 @@ class ProjectPaths {
     }
 
     /**
+     * Return path relatively of root
+     * @param p
+     */
+    getRelative(p) {
+        return path.relative(this.root(), this.get(p));
+    }
+
+    /**
      * Return path to root of the project
      * @returns string
      */
