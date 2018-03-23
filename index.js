@@ -40,9 +40,9 @@ class ProjectPaths {
      * @param p Alias for path
      */
     get (p) {
-        if (this.paths[p]) {
-            return this.paths[p];
-        }
+        // if (this.paths[p]) {
+        //     return this.paths[p];
+        // }
         if (arguments.length == 1) {
             if (['root', '/'].includes(p)) return root.toString();
             if (this.config[p] == null) throw new Error(`Path for alias "${p}" not defined in project.paths.json`);
