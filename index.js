@@ -62,11 +62,11 @@ class ProjectPaths {
     }
 
     /**
-     * Return path relatively of root
+     * Return path relatively of current working directory
      * @param p
      */
     get(p) {
-        return `./${path.relative(this.root(), this.getA(...arguments))}`;
+        return `./${path.relative(process.cwd(), this.getA(...arguments))}`;
     }
 
     /**
