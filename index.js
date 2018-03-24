@@ -30,7 +30,7 @@ class ProjectPaths {
             if (mustacheStart == null) throw new Error(`Path for alias "${p}" founded 1 mask which don't stay in start of path: ${calcPaths}`);
             else {
                 let p = mustacheStart[0].replace(/[{}]/g, '');
-                return this.get(p, calcPaths.replace(/{.+}/g, ''));
+                return this.getA(p, calcPaths.replace(/{.+}/g, ''));
             }
         }
     }
@@ -55,7 +55,7 @@ class ProjectPaths {
             this.paths[p] = path.resolve(this.root(), calcPaths);
             return this.paths[p];
         } else if (arguments.length > 1) {
-            let calcPath = this.get(p);
+            let calcPath = this.getA(p);
             let paths = [calcPath, ...[].slice.call(arguments, 1)];
             return path.resolve(`${paths.join('/')}`);
         } else throw new Error(`Alias is undefined`);
@@ -65,8 +65,8 @@ class ProjectPaths {
      * Return path relatively of root
      * @param p
      */
-    getR(p) {
-        return `./${path.relative(this.root(), this.get(...arguments))}`;
+    get(p) {
+        return `./${path.relative(this.root(), this.getA(...arguments))}`;
     }
 
     /**
