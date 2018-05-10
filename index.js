@@ -36,13 +36,10 @@ class ProjectPaths {
     }
 
     /**
-     * Return absolute path
-     * @param p Alias for path
+     * Return absolute path by alias
+     * @param p Alias for path in project.paths file
      */
     getA (p) {
-        // if (this.paths[p]) {
-        //     return this.paths[p];
-        // }
         if (arguments.length == 1) {
             if (['root', '/'].includes(p)) return root.toString();
             if (this.config[p] == null) throw new Error(`Path for alias "${p}" not defined in project.paths.json`);
@@ -66,7 +63,8 @@ class ProjectPaths {
      * @param p
      */
     get(p) {
-        return `./${path.relative(process.cwd(), this.getA(...arguments))}`;
+        let from = path.dirname(require.main.filename)
+        return path.relative(from, this.getA(...arguments));
     }
 
     /**
