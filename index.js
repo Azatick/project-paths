@@ -63,8 +63,7 @@ class ProjectPaths {
      * @param p
      */
     get(p) {
-        let from = path.dirname(require.main.filename)
-        return path.relative(from, this.getA(...arguments));
+        return `./${path.relative(process.cwd(), this.getA(...arguments))}`;
     }
 
     /**
