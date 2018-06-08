@@ -1,4 +1,4 @@
 {
-  "src": "./src",
+  "src": "{root}/src",
     "react": "{src}/react"
 }

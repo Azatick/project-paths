@@ -1,4 +1,4 @@
-const root = require('app-root-path'),
+const root = require('guess-root-path')(),
 	path = require('path'),
 	fs = require('fs'),
 	search = require('recursive-search');

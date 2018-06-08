@@ -1,13 +1,13 @@
 {
   "name": "project-paths",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "test": "jest"
   },
   "dependencies": {
-    "app-root-path": "^2.0.1",
+    "guess-root-path": "^1.0.0",
     "recursive-search": "^1.0.1"
   },
   "devDependencies": {

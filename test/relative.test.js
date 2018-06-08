@@ -1,7 +1,6 @@
 let pp = require('../index');
 
 test('Relative path', () => {
-	console.log(pp.get('src'));
 	expect(pp.get('src') == `./../src`).toBe(true);
 });
 
