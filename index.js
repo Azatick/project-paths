@@ -31,7 +31,8 @@ class ProjectPaths {
 	 * @private
 	 */
 	__searchConfig(configFileName) {
-		return search.recursiveSearchSync(configFileName, root.toString())[0];
+		return search.recursiveSearchSync(configFileName, root.toString())
+			.filter(path => !path.includes(`${__dirname}/test`))[0];
 	}
 
 	__resolveMasks(p, mustaches, calcPaths) {
@@ -42,7 +43,7 @@ class ProjectPaths {
 			if (mustacheStart == null) throw new Error(`Path for alias "${p}" founded 1 mask which don't stay in start of path: ${calcPaths}`);
 			else {
 				let p = mustacheStart[0].replace(/[{}]/g, '');
-				return this.getA(p, calcPaths.replace(/{.+}/g, ''));
+				return this.get(p, calcPaths.replace(/{.+}/g, ''));
 			}
 		}
 	}
@@ -51,7 +52,7 @@ class ProjectPaths {
 	 * Return absolute path by alias
 	 * @param p Alias for path in project.paths file
 	 */
-	getA(p) {
+	get(p) {
 		if (arguments.length == 1) {
 			if (['root', '/'].includes(p)) return root.toString();
 			if (this.config[p] == null) throw new Error(`Path for alias "${p}" not defined in ${this.configFileName}`);
@@ -64,18 +65,10 @@ class ProjectPaths {
 			this.paths[p] = path.resolve(this.root(), calcPaths);
 			return this.paths[p];
 		} else if (arguments.length > 1) {
-			let calcPath = this.getA(p);
+			let calcPath = this.get(p);
 			let paths = [calcPath, ...[].slice.call(arguments, 1)];
 			return path.resolve(`${paths.join('/')}`);
 		} else throw new Error(`Alias is undefined`);
-	}
-
-	/**
-	 * Return path relatively of current working directory
-	 * @param p
-	 */
-	get(p) {
-		return `./${path.relative(path.dirname(require.main.filename), this.getA(...arguments))}`;
 	}
 
 	/**
